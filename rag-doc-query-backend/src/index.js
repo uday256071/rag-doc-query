@@ -38,7 +38,7 @@ app.post("/api/upload", upload.single("pdf"), async (req, res) => {
       embeddings,
       {
         url: process.env.QDRANT_URL,
-        collectionName: "chaicode-collection",
+        collectionName: "rag-collection",
       }
     );
 
@@ -65,7 +65,7 @@ app.post("/api/chat", async (req, res) => {
       embeddings,
       {
         url: process.env.QDRANT_URL,
-        collectionName: "chaicode-collection",
+        collectionName: "rag-collection",
       }
     );
 
@@ -75,10 +75,21 @@ app.post("/api/chat", async (req, res) => {
       .map((result) => result.pageContent)
       .join("\n\n");
 
-    const prompt = `You are a helpful AI assistant who helps resolving user query based on the context and content available to you from the PDF file. Always mention Page number in the response on TOP of the answer then answer the question from next line.
-    Only answer the question if you have the answer in the context provided . If you don't have the answer, just say "I don't have the context to answer that question".
-            Context: \n${context}
-            Query: \n {query}`;
+    const prompt = `You are an expert AI assistant helping users answer questions about a PDF document. Use ONLY the provided context below to answer the user's query.
+
+Instructions:
+- If you find the answer in the context, provide a clear and concise answer first. Then, in a new line at the BOTTOM of your response, write "Page(s):" followed by the relevant page numbers (if available).
+- If multiple pages are relevant, list all page numbers separated by commas.
+- If you do NOT find the answer in the context, reply ONLY with: "I don't have the context to answer that question."
+- Do NOT use any information outside the context.
+
+Context:
+${context}
+
+User Query:
+${query}
+
+Remember: Always mention the page number(s) at the bottom of your answer in a new line if available.`;
 
     const response = await openai.chat.completions.create({
       model: "gpt-4.1-mini",

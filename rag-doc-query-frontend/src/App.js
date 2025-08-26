@@ -5,6 +5,7 @@ function App() {
   const [file, setFile] = useState(null);
   const [messages, setMessages] = useState([]);
   const [query, setQuery] = useState("");
+  const [alert, setAlert] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -23,8 +24,12 @@ function App() {
         body: formData,
       });
       const data = await res.text();
+      setAlert({ type: "success", message: "File uploaded successfully!" });
     } catch (error) {
       console.error("Error uploading file:", error);
+      setAlert({ type: "error", message: "Error uploading file." });
+    } finally {
+      setTimeout(() => setAlert(null), 5000);
     }
   };
 
@@ -72,6 +77,9 @@ function App() {
             </div>
             {file && <div className="file-name">{file.name}</div>}
           </div>
+          {alert && (
+            <div className={`alert ${alert.type}`}>{alert.message}</div>
+          )}
           <div className="left-panel-footer">
             <button
               type="submit"
