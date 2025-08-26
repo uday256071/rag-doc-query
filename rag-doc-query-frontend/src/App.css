@@ -1,0 +1,182 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  background-color: #6c63ff;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.App {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.left-panel {
+  width: 25%;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left-panel h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 0;
+}
+
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.file-input-wrapper label {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #6c63ff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-input-wrapper label:hover {
+  background-color: #574bd6;
+}
+
+.left-panel button {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.left-panel button:disabled {
+  background-color: #a5a0ff;
+  cursor: not-allowed;
+}
+
+.left-panel button:hover:not(:disabled) {
+  background-color: #574bd6;
+}
+
+.right-panel {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f7f6;
+}
+
+.chat-box {
+  flex-grow: 1;
+  padding: 40px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.message.user {
+  background-color: #6c63ff;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.message.ai {
+  background-color: #ffffff;
+  color: #333;
+  align-self: flex-start;
+  border: 1px solid #e0e0e0;
+  border-bottom-left-radius: 4px;
+}
+
+.query-form {
+  display: flex;
+  padding: 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.query-form textarea {
+  flex-grow: 1;
+  margin-right: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  resize: none;
+}
+
+.query-form button {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.query-form button:hover {
+  background-color: #574bd6;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.left-panel-footer {
+  padding: 20px;
+}

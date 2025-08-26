@@ -1,0 +1,15 @@
+services:
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+    # environment:
+    #   QDRANT__SERVICE__GRPC_PORT: 6334
+    #   QDRANT__STORAGE__PATH: /qdrant/storage
+    #   QDRANT__LOGGING__LEVEL: info
+volumes:
+  qdrant_storage:
